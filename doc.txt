@@ -12,4 +12,6 @@ gid add .
 git commit -m ""
 git push
 
+
+if error = git push --force origin
 *****/
