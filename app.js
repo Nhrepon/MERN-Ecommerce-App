@@ -48,6 +48,19 @@ app.use("/api", router);
 
 
 
+
+// connect front end 
+app.use(express.static('client/dist'));
+app.get('*', (req, res) => {
+   res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+});
+
+
+
+
+
+
+
 // 404 url not found manage
 app.use("*",(req, res)=>{
     res.status(404).json({data:"Not found"});
