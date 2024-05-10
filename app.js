@@ -1,22 +1,43 @@
 const express = require('express');
 const router=require('./src/routes/api');
-const mongoose = require('mongoose');
 const app=new express();
 
 
+const mongoose = require('mongoose');
+const cors=require('cors');
+const helmet=require('helmet');
+const hpp=require('hpp');
+const xss=require('xss-clean');
+const mongoSanitize=require('express-mongo-sanitize');
+const rateLimit=require('express-rate-limit');
+const dotenv=require('dotenv');
+dotenv.config({path:'./config.env'});
+
+
+
+app.use(cors());
+app.use(helmet());
+app.use(hpp());
+app.use(xss());
+app.use(mongoSanitize());
 
 
 
 
 
 
+// Req limiting
+const limiter=rateLimit({windowMs:15*60*1000, limit:3000});
+app.use(limiter);
 
 
 
 
 
 
-
+// json body parse
+app.use(express.json({limit:'50mb'}));
+app.use(express.urlencoded({extended:true}));
 
 
 
@@ -25,11 +46,11 @@ const app=new express();
 
 
 // Database connection
-/* const url="mongodb://localhost:27017/mernEcommerce";
-const option={user:"", pass:"", autoIndex:true}; */
+const url="mongodb://localhost:27017/mernEcommerce";
+const option={user:"", pass:"", autoIndex:true};
 
-const url="mongodb+srv://Repon:<password>@cluster0.nhslprh.mongodb.net/MernEcommerce";
-const option={user:"Repon", pass:"Repon7248", autoIndex:true};
+//const url="mongodb+srv://Repon:<password>@cluster0.nhslprh.mongodb.net/MernEcommerce";
+//const option={user:"Repon", pass:"Repon7248", autoIndex:true};
 
 mongoose.connect(url, option).then((res)=>{
     console.log("Database connect success ... ");
