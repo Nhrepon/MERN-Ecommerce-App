@@ -22,6 +22,10 @@ router.post("/createProduct",ProductController.createProduct);
 router.get("/readProduct",ProductController.readProduct);
 router.post("/updateProduct/:id",ProductController.updateProduct);
 router.post("/deleteProduct/:id",ProductController.deleteProduct);
+router.get("/brandList", ProductController.brandList);
+router.get("/categoryList", ProductController.categoryList);
+router.get("/productByBrand/:id", ProductController.productByBrand);
+router.get("/productByCategory/:id", ProductController.productByCategory);
 
 
 

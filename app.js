@@ -3,18 +3,24 @@ const router=require('./src/routes/api');
 const app=new express();
 
 
-const mongoose = require('mongoose');
+
+
+// Security middleware import
 const cors=require('cors');
 const helmet=require('helmet');
 const hpp=require('hpp');
 const xss=require('xss-clean');
 const mongoSanitize=require('express-mongo-sanitize');
 const rateLimit=require('express-rate-limit');
+
+// Environment variable import and implement
 const dotenv=require('dotenv');
 dotenv.config({path:'./config.env'});
 
 
 
+
+// Security middleware implement
 app.use(cors());
 app.use(helmet());
 app.use(hpp());
@@ -26,7 +32,7 @@ app.use(mongoSanitize());
 
 
 
-// Req limiting
+// Req rate limiting
 const limiter=rateLimit({windowMs:15*60*1000, limit:3000});
 app.use(limiter);
 
@@ -46,6 +52,7 @@ app.use(express.urlencoded({extended:true}));
 
 
 // Database connection
+const mongoose = require('mongoose');
 const url="mongodb://localhost:27017/mernEcommerce";
 const option={user:"", pass:"", autoIndex:true};
 

@@ -7,7 +7,7 @@ exports.createProduct=async(req, res) => {
         const data=await ProductModel.create(reqBody);
         res.json({status:"success", data:data});
     } catch (error) {
-        res.json({status:"Failed",message:error});
+        res.json({status:"failed",message:error});
     }
     
 }
@@ -19,7 +19,7 @@ exports.readProduct=async(req, res) => {
         const data=await ProductModel.find();
         res.json({status:"success", data:data});
     } catch (error) {
-        res.json({status:"Failed",message:error});
+        res.json({status:"failed",message:error});
     }
     
 }
@@ -36,7 +36,7 @@ exports.updateProduct=async(req, res) => {
         const data=await ProductModel.updateOne({_id:id},reqBody);
         res.json({status:"success", data:data});
     } catch (error) {
-        res.json({status:"Failed",message:error});
+        res.json({status:"failed",message:error});
     }
     
 }
@@ -51,7 +51,74 @@ exports.deleteProduct=async(req, res) => {
         const data=await ProductModel.deleteOne({_id:id});
         res.json({status:"success", data:data});
     } catch (error) {
-        res.json({status:"Failed",message:error});
+        res.json({status:"failed",message:error});
     }
     
+}
+
+
+
+
+exports.brandList=async(req, res)=>{
+    try {
+
+        const data=await ProductModel.find();
+        res.json({status:"success", data:data});
+    } catch (error) {
+        res.json({status:"failed", message:error});
+    }
+}
+
+
+
+
+exports.categoryList=async(req, res)=>{
+    try {
+
+        const data=await ProductModel.find();
+        res.json({status:"success", data:data});
+    } catch (error) {
+        res.json({status:"failed", message:error});
+    }
+}
+
+
+
+
+
+exports.productByBrand=async(req, res)=>{
+    try {
+        const brandId=req.params.id;
+        const data=await ProductModel.find();
+        res.json({status:"success", data:data});
+    } catch (error) {
+        res.json({status:"failed", message:error});
+    }
+}
+
+
+
+
+
+exports.productByCategory=async(req, res)=>{
+    try {
+
+        const data=await ProductModel.find();
+        res.json({status:"success", data:data});
+    } catch (error) {
+        res.json({status:"failed", message:error});
+    }
+}
+
+
+
+
+exports.b=async(req, res)=>{
+    try {
+
+        const data=await ProductModel.find();
+        res.json({status:"success", data:data});
+    } catch (error) {
+        res.json({status:"failed", message:error});
+    }
 }
