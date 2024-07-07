@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
 
     "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
@@ -20,8 +19,6 @@
     "html-to-image": "^1.11.11",
     "localforage": "^1.10.0",
     "moment": "^2.30.1",
-    "react-bootstrap": "^2.10.2",
-    "react-bootstrap-icons": "^1.11.4",
     "react-code-input": "^3.10.1",
     "react-hot-toast": "^2.4.1",
     "react-router": "^6.22.3",

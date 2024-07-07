@@ -74,7 +74,7 @@ app.use("/api", router);
 
 
 
-
+app.set('etag', false);
 
 
 // connect front end 

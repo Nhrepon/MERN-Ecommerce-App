@@ -1,3 +1,5 @@
+const BrandModel = require('../model/BrandModel');
+const CategoryModel = require('../model/CategoryModel');
 const ProductModel=require('../model/ProductModel');
 
 
@@ -62,7 +64,7 @@ exports.deleteProduct=async(req, res) => {
 exports.brandList=async(req, res)=>{
     try {
 
-        const data=await ProductModel.find();
+        const data=await BrandModel.find();
         res.json({status:"success", data:data});
     } catch (error) {
         res.json({status:"failed", message:error});
@@ -75,7 +77,7 @@ exports.brandList=async(req, res)=>{
 exports.categoryList=async(req, res)=>{
     try {
 
-        const data=await ProductModel.find();
+        const data=await CategoryModel.find();
         res.json({status:"success", data:data});
     } catch (error) {
         res.json({status:"failed", message:error});

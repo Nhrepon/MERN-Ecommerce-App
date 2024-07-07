@@ -2,20 +2,25 @@ const mongoose=require('mongoose');
 
 const databaseSchema=mongoose.Schema({
     userId:{type:mongoose.Schema.Types.ObjectId, require:true},
-    userMobile:{type:String, require:true},
-    userAddress:{type:String, require:true},
-    userPostalCode:{type:String, require:true},
-    userDistrict:{type:String, require:true},
-    userCity:{type:String, require:true},
-    userState:{type:String, require:true},
-    userCountry:{type:String, require:true},
+    userName:{type:String, require:true, unique:true},
+    firstName:{type:String},
+    lastName:{type:String},
+    age:{type:String},
+    gender:{type:String},
+    userMobile:{type:String},
+    userAddress:{type:String},
+    userPostalCode:{type:String},
+    userDistrict:{type:String},
+    userCity:{type:String},
+    userState:{type:String},
+    userCountry:{type:String},
 
-    shippingAddress:{type:String, require:true},
-    shippingPostalCode:{type:String, require:true},
-    shippingDistrict:{type:String, require:true},
-    shippingCity:{type:String, require:true},
-    shippingState:{type:String, require:true},
-    shippingCountry:{type:String, require:true},
+    shippingAddress:{type:String},
+    shippingPostalCode:{type:String},
+    shippingDistrict:{type:String},
+    shippingCity:{type:String},
+    shippingState:{type:String},
+    shippingCountry:{type:String},
 
 
 }, {timestamps:true, versionKey:false});
