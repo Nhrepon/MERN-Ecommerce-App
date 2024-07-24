@@ -1,7 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import UserStore from "../../store/UserStore";
+import ValidationHelper from "../../utility/ValidationHelper";
 
 const RegistrationComponent = () => {
+
+  const {registrationFormValue, registrationFormOnChange, userRegistration}=UserStore();
+
+  const onFormSubmit=async()=>{
+    
+    if (!ValidationHelper.IsEmail(registrationFormValue.email)) {
+      toast.error("Valid email required!");
+    }else{
+      const response = await userRegistration(registrationFormValue);
+      toast.success(response);
+    }
+  }
+
+
   return (
     <div className="container-fluid">
       <div className="container">
@@ -14,7 +31,10 @@ const RegistrationComponent = () => {
                   className="form-control"
                   id="email"
                   placeholder="Enter email address"
-                  //value=""
+                  value={registrationFormValue.email}
+                  onChange={(e)=>{
+                    registrationFormOnChange("email", e.target.value);
+                  }}
                   required
                 />
               </div>
@@ -24,13 +44,16 @@ const RegistrationComponent = () => {
                   className="form-control"
                   id="password"
                   placeholder="Enter password"
-                  //value=""
+                  value={registrationFormValue.password}
+                  onChange={(e)=>{
+                    registrationFormOnChange("password", e.target.value);
+                  }}
                   required
                 />
               </div>
 
               <div className="col-12 text-center">
-                <button className="btn btn-success" type="submit">
+                <button className="btn btn-success" type="submit" onClick={onFormSubmit}>
                   Create account
                 </button>
                 <p className=" my-5">Already have an account? <Link to="/login" className="nav-link fw-bold" >Login</Link></p>

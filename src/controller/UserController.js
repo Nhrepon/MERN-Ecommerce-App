@@ -1,3 +1,4 @@
+const BlogPostDetailsModel = require("../model/BlogPostDetailsModel");
 const UserModel = require("../model/UserModel");
 
 
@@ -23,9 +24,9 @@ exports.userProfileRead=async (req, res)=>{
     try {
         
         const data=await UserModel.find();
-        res.json({status:"Success", data:data});
+        res.json({status:"success", data:data});
     } catch (error) {
-        res.json({status:"Error", data:error});
+        res.json({status:"error", data:error});
     }
 }
 

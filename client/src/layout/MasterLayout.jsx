@@ -5,7 +5,7 @@ import {Toaster} from 'react-hot-toast';
 
 const MasterLayout = (props) => {
     return (
-        <div>
+        <div className='body'>
             <TopNavigationBar/>
             {props.children}
             <FooterComponent/>

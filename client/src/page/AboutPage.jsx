@@ -7,8 +7,9 @@ const AboutPage = () => {
             <div className="container-fluid">
                 <div className="container">
                     <div className="row">
-                        <div className="col-12">
-                            <h1>About Page</h1>
+                        <div className="col-12 text-center mt-5">
+                            <h2>About us</h2>
+                            <hr />
                         </div>
                     </div>
                 </div>
