@@ -1,7 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import SubmitButton from "./SubmitButton.jsx";
+import UserStore from "../../store/UserStore.js";
+import ValidationHelper from "../../utility/ValidationHelper.js";
+import {toast} from "react-hot-toast";
 
 const LoginComponent = () => {
+
+    const navigate = useNavigate();
+    const {loginFormValue, loginFormOnChange, userLogin} = UserStore();
+
+
+    const loginSubmit =async ()=>{
+        if (!ValidationHelper.IsEmail(loginFormValue.email)){
+            toast.error("Valid email required!");
+        }else {
+            let response = await userLogin(loginFormValue);
+            if (response==true){
+                toast.success("Login success!");
+                navigate("/dashboard")
+            }else if(response==false){
+                toast.error("userNotFound")
+            }else {
+                toast.error("failed")
+            }
+        }
+
+
+
+
+    }
+
+
+
+
+
+
+
+
     return (
         <div className='container-fluid'>
             <div className="container">
@@ -14,7 +50,10 @@ const LoginComponent = () => {
                   className="form-control"
                   id="email"
                   placeholder="Enter email address"
-                  //value=""
+                  value={loginFormValue.email}
+                  onChange={(e)=>{
+                      loginFormOnChange("email", e.target.value )
+                  }}
                   required
                 />
               </div>
@@ -24,24 +63,25 @@ const LoginComponent = () => {
                   className="form-control"
                   id="password"
                   placeholder="Enter password"
-                  //value=""
+                  value={loginFormValue.password}
+                  onChange={(e)=>{
+                      loginFormOnChange("password", e.target.value )
+                  }}
                   required
                 />
               </div>
 
               <div className="col-12 text-center">
-                <button className="btn btn-success" type="submit">
-                  Login
-                </button>
+                <SubmitButton onClick={loginSubmit} type="submit" className="btn btn-success" text="Login" />
                 <hr />
                 
                 <div className="d-flex gap-2">
                     <p>Login with:</p>
-                    <i class="bi bi-google"></i>
-                    <i class="bi bi-facebook"></i>
-                    <i class="bi bi-twitter"></i>
-                    <i class="bi bi-github"></i>
-                    <i class="bi bi-whatsapp"></i>
+                    <i className="bi bi-google"></i>
+                    <i className="bi bi-facebook"></i>
+                    <i className="bi bi-twitter"></i>
+                    <i className="bi bi-github"></i>
+                    <i className="bi bi-whatsapp"></i>
                 </div>
                 <p className=" my-5">Don't have an account? <Link to="/registration" className="nav-link fw-bold" >Create account</Link></p>
               </div>

@@ -7,9 +7,9 @@ const router=express.Router();
 
 
 router.post("/userRegistration",UserController.userRegistration);
-router.post("/userLogin/:email/:password",UserController.userLogin);
+router.post("/userLogin",UserController.userLogin);
 router.post("/userVerify/:email",AuthMiddleware ,UserController.userVerify);
-router.get("/userProfileRead", UserController.userProfileRead);
+router.get("/userProfileRead", AuthMiddleware, UserController.userProfileRead);
 router.post("/userProfileUpdate/:id", AuthMiddleware, UserController.userProfileUpdate);
 router.post("/userProfileDelete/:id", AuthMiddleware, UserController.userProfileDelete);
 

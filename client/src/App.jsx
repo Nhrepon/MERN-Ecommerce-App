@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from './page/HomePage';
 import RegistrationPage from './page/RegistrationPage';
 import NotFoundPage from './page/NotFoundPage';
@@ -8,6 +8,7 @@ import BlogPage from './page/BlogPage';
 import ProductPage from './page/ProductPage';
 import AboutPage from './page/AboutPage';
 import ContactPage from './page/ContactPage';
+import DashboardPage from "./page/DashboardPage.jsx";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
 
         <Route path="/registration" element={<RegistrationPage/>} />
         <Route path="/login" element={<LoginPage/>} />
+        <Route path="/dashboard" element={<DashboardPage/>} />
 
 
         <Route path="/blog" element={<BlogPage/>} />

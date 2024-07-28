@@ -9,6 +9,7 @@ const hpp = require("hpp");
 const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
 const rateLimit = require("express-rate-limit");
+const cookieParser = require('cookie-parser');
 
 // Environment variable import and implement
 const dotenv = require("dotenv");
@@ -20,6 +21,7 @@ app.use(helmet());
 app.use(hpp());
 app.use(xss());
 app.use(mongoSanitize());
+app.use(cookieParser());
 
 // Req rate limiting
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 3000 });
@@ -31,7 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Database connection
 const mongoose = require("mongoose");
-const url = "mongodb://localhost:27017/mernEcommerce";
+const url = "mongodb://localhost:27017/MernEcommerce";
 const option = { user: "", pass: "", autoIndex: true };
 
 //const url="mongodb+srv://Repon:<password>@cluster0.nhslprh.mongodb.net/MernEcommerce";
@@ -58,8 +60,8 @@ app.get("*", (req, res) => {
 });
 
 // 404 url not found manage
-app.use("*", (req, res) => {
-  res.status(404).json({ data: "Not found" });
-});
+//app.use("*", (req, res) => {
+//  res.status(404).json({ data: "Not found" });
+//});
 
 module.exports = app;

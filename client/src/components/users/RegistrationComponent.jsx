@@ -1,20 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { toast } from "react-hot-toast";
 import UserStore from "../../store/UserStore";
 import ValidationHelper from "../../utility/ValidationHelper";
+import SubmitButton from "./SubmitButton.jsx";
+
 
 const RegistrationComponent = () => {
+  const navigate = useNavigate();
 
-  const {registrationFormValue, registrationFormOnChange, userRegistration}=UserStore();
+const {registrationFormValue, registrationFormOnChange, userRegistration}=UserStore();
 
   const onFormSubmit=async()=>{
     
     if (!ValidationHelper.IsEmail(registrationFormValue.email)) {
       toast.error("Valid email required!");
     }else{
-      const response = await userRegistration(registrationFormValue);
-      toast.success(response);
+      let response = await userRegistration(registrationFormValue);
+      if (response==true){
+        toast.success("Registration success!")
+      }else if(response==false){
+        toast.error("Already have an account. Please, login to access.")
+      }else {
+        toast.error("failed")
+      }
+
     }
   }
 
@@ -53,9 +63,8 @@ const RegistrationComponent = () => {
               </div>
 
               <div className="col-12 text-center">
-                <button className="btn btn-success" type="submit" onClick={onFormSubmit}>
-                  Create account
-                </button>
+                <SubmitButton type="submit" className="btn btn-success" onClick={onFormSubmit} text="Create account" />
+
                 <p className=" my-5">Already have an account? <Link to="/login" className="nav-link fw-bold" >Login</Link></p>
               </div>
             </form>

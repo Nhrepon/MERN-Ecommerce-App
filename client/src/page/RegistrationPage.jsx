@@ -6,7 +6,7 @@ const RegistrationPage = () => {
     return (
         <MasterLayout>
             
-                <RegistrationComponent/>
+            <RegistrationComponent/>
             
         </MasterLayout>
     );

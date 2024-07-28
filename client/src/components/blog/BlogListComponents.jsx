@@ -1,47 +1,48 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const BlogListComponents = () => {
   const data = [
     {
       title: "Good food habit is great to be a healthy man",
-      img: "../../../public/exercise.jpg",
+      img: "/exercise.jpg",
       description:
         "Ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus cum distinctio vel mollitia reprehen",
     },
     {
       title: "2. Good food habit is great to be a healthy man",
-      img: "../../../public/exercise.jpg",
+      img: "/exercise.jpg",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. reprehenderit ullam unde atque aliquid quia",
     },
     {
       title: "3. Good food habit is great to be a healthy man",
-      img: "../../../public/exercise.jpg",
+      img: "/exercise.jpg",
       description:
         "Lorem ipsum dolor sit adipisicing elit. Necessitatibus vel reprehenderit ullam unde atque aliquid quia",
     },
     {
       title: "4. Good food habit is great to be a healthy man",
-      img: "../../../public/exercise.jpg",
+      img: "/exercise.jpg",
       description:
         "Lorem ipsum dolor sit amet consectetur mollitia reprehenderit ullam unde atque aliquid quia",
     },
     {
       title: "Good food habit is great to be a healthy man",
-      img: "../../../public/exercise.jpg",
+      img: "/exercise.jpg",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus cum distinctio vel mollitia reprehenderit ullam unde atque aliquid quia",
     },
     {
       title: "Good food habit is great to be a healthy man",
-      img: "../../../public/exercise.jpg",
+      img: "/exercise.jpg",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus cum distinctio vel mollitia reprehenderit ullam unde atque aliquid quia",
     },
     {
       title: "Good food habit is great to be a healthy man",
-      img: "../../../public/exercise.jpg",
+      img: "/exercise.jpg",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus cum distinctio vel mollitia reprehenderit ullam unde atque aliquid quia",
     },

@@ -106,7 +106,7 @@ const TopNavigationBar = () => {
                     type="button"
                     className="btn ms-3 btn-success btn-outline-light"
                     to="/registration">
-                    <i class="bi bi-person-add"></i>
+                    <i className="bi bi-person-add"></i>
                   </Link>
                   <Link type="button" className="btn btn-success btn-outline-light" to="/login">
                     Login

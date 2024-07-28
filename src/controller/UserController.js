@@ -1,12 +1,23 @@
 const BlogPostDetailsModel = require("../model/BlogPostDetailsModel");
 const UserModel = require("../model/UserModel");
+const {encodeToken} = require("../utility/TokenHelper");
+
 
 
 exports.userRegistration=async (req, res)=>{
     try{
         const reqBody=req.body;
-        const data= await UserModel.create(reqBody);
-        res.json({status:"success", message:"User registration success ... ", data:data});
+        //res.json({status:"success", message:"User registration success ... ", data:reqBody});
+        const user = await UserModel.find({email:reqBody.email})
+        if (user.length > 0){
+            res.json({status:"duplicate"});
+        }else {
+            const data= await UserModel.create(reqBody);
+            res.json({status:"success", message:"User registration success ... ", data:data});
+        }
+
+
+
     }catch(error){
         res.json({status:"error", data:error});
     }
@@ -16,25 +27,17 @@ exports.userRegistration=async (req, res)=>{
 
 
 
-
-
-
-
 exports.userProfileRead=async (req, res)=>{
     try {
-        
-        const data=await UserModel.find();
+        const {userId} = req.headers;
+
+        const data=await UserModel.findOne({_id:userId}, {password:0});
+
         res.json({status:"success", data:data});
     } catch (error) {
         res.json({status:"error", data:error});
     }
 }
-
-
-
-
-
-
 
 
 
@@ -56,11 +59,6 @@ exports.userProfileUpdate=async (req, res)=>{
 
 
 
-
-
-
-
-
 exports.userProfileDelete=async (req, res)=>{
     try {
         const {id}=req.params;
@@ -75,15 +73,24 @@ exports.userProfileDelete=async (req, res)=>{
 
 
 
-
-
-
 exports.userLogin=async (req, res)=>{
     try {
-        
-        res.json({status:"Success", data:data});
+        const {email, password} = req.body;
+        const user = await UserModel.find({email: email, password: password});
+
+        if (user.length > 0){
+            const userId=user[0]._id;
+            const token = encodeToken(email,userId);
+            const cookieOption = {expires:new Date(Date.now()+30*24*60*60*1000), httpOnly:false};
+            res.cookie("token", token, cookieOption);
+            res.json({status: "success", token: token});
+        }else {
+            res.json({status: "userNotFound"});
+        }
+
+
     } catch (error) {
-        res.json({status:"Error", data:error});
+        res.json({status:"error", data:error});
     }
 }
 
