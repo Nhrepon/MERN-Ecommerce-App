@@ -1,6 +1,6 @@
 import React from 'react';
-import MasterLayout from "./MasterLayout.jsx";
-import AdminSidebarNavigation from "../components/admin/AdminSidebarNavigation.jsx";
+import MasterLayout from "../../layout/MasterLayout.jsx";
+import AdminSidebarNavigation from "../AdminSidebarNavigation.jsx";
 
 const DashboardLayout = (props) => {
     return (
@@ -8,10 +8,10 @@ const DashboardLayout = (props) => {
             <div className="container-fluid">
                 <div className="container">
                     <div className="row">
-                        <div className="col-2 border-end">
+                        <div className="col-2 p-0 border-end">
                             <AdminSidebarNavigation/>
                         </div>
-                        <div className="col-10">
+                        <div className="col-10 py-3 bg-light">
                             {props.children}
                         </div>
                     </div>

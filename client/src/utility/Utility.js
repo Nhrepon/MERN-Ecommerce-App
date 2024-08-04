@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import Cookies from "js-cookie";
 
 export function unauthorized(code){
     if(code===401){
@@ -67,4 +68,11 @@ export async  function InfoAlert(msg) {
         allowOutsideClick: false
     });
     return result.isConfirmed;
+}
+
+
+export function isLogin(){
+    const cookie = !!Cookies.get("token");
+    //console.log(cookie);
+    return cookie;
 }

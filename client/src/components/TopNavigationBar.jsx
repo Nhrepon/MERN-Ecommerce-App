@@ -1,7 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {isLogin} from "../utility/Utility.js";
+import userStore from "../store/UserStore.js";
+import SubmitButton from "./users/SubmitButton.jsx";
 
 const TopNavigationBar = () => {
+  const navigate = useNavigate();
+
+  const {userLogout}=userStore();
+
+  const handleLogout =async ()=>{
+    await userLogout();
+    sessionStorage.clear();
+    localStorage.clear();
+    navigate("/");
+  }
+
   return (
     <div className="container-fluid sticky-md-top bg-success z-3">
       <div className="container">
@@ -82,27 +96,68 @@ const TopNavigationBar = () => {
 
                 <div className="d-flex gap-1">
                   <Link
-                    to="/cart"
-                    type="button"
-                    className="btn ms-1 btn-outline-light position-relative rounded-pill">
+                      to="/cart"
+                      type="button"
+                      className="btn ms-1 btn-outline-light position-relative rounded-pill">
                     <i className="bi bi-bag"></i>
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black">
-                      {55}
+                    <span
+                        className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black">
+                      {5}
                       <span className="visually-hidden">unread message</span>
                     </span>
                   </Link>
                   <Link
-                    to="/wish"
-                    type="button"
-                    className="btn ms-2 btn-outline-light position-relative rounded-pill">
+                      to="/wish"
+                      type="button"
+                      className="btn ms-2 btn-outline-light position-relative rounded-pill">
                     <i className="bi bi-heart"></i>
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black">
-                      {75}
+                    <span
+                        className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-black">
+                      {7}
                       <span className="visually-hidden">unread message</span>
                     </span>
                   </Link>
 
-                  <Link
+                  <div className="dropdown">
+                    <a href="#" className="btn ms-3 btn-success btn-outline-light d-flex align-items-center link-dark text-light text-decoration-none dropdown-toggle"
+                       id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i className="bi bi-person-circle"></i>
+                    </a>
+                    <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+
+
+
+                      {
+                        isLogin() ?
+                            (
+                                <>
+                                  <li><Link className="dropdown-item" to="/dashboard">Dashboard</Link></li>
+                                  <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
+                                  <li>
+                                    <hr className="dropdown-divider"/>
+                                  </li>
+                                  <li><Link className="dropdown-item" to="/setting">Setting</Link></li>
+                                  <li>
+                                    <hr className="dropdown-divider"/>
+                                  </li>
+                                  <li><SubmitButton onClick={handleLogout} type="submit" className="dropdown-item"
+                                                    text="Logout"/></li>
+                                </>
+                            )
+                            :
+                            (
+                                <>
+                                  <li><Link className="dropdown-item" to="/registration">Registration</Link></li>
+                                  <li><Link className="dropdown-item" to="/login">Login</Link></li>
+                                </>
+                            )
+                      }
+
+
+                    </ul>
+                  </div>
+
+                  {/*<Link
                     type="button"
                     className="btn ms-3 btn-success btn-outline-light"
                     to="/registration">
@@ -110,10 +165,10 @@ const TopNavigationBar = () => {
                   </Link>
                   <Link type="button" className="btn btn-success btn-outline-light" to="/login">
                     Login
-                  </Link>
+                  </Link>*/}
                 </div>
               </div>
-              </div>
+            </div>
           </nav>
         </div>
       </div>

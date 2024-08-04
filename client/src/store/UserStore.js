@@ -69,6 +69,34 @@ const UserStore = create((set)=>({
         }
     },
 
+    userProfile: null,
+    getUserProfile: async ()=>{
+        try {
+            const profile = await axios.get("/api/userProfileRead");
+            if (profile.data["data"].length > 0){
+                set({userProfile: profile.data[0]});
+            }else {
+                set({userProfile: []});
+            }
+
+        }catch (error) {
+            return ({status:"error", message:error});
+        }
+    },
+
+
+    userLogout: async ()=>{
+        try {
+            set({isFormSubmit:true});
+            const response = await axios.post("/api/userLogout");
+            set({isFormSubmit:false});
+
+            return response.data["status"]==="success";
+        }catch (error) {
+            return ({status:"error", message:error});
+        }
+    }
+
 
 
 

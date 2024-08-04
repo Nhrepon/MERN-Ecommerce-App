@@ -25,5 +25,6 @@ const databaseSchema=mongoose.Schema({
 
 }, {timestamps:true, versionKey:false});
 
+
 const ProfileModel=mongoose.model('profiles', databaseSchema);
-module.exports=ProfileModel;
+module.exports = ProfileModel;
